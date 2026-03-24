@@ -96,6 +96,7 @@ The baseline model is a deep feedforward neural network (MLP) with three hidden 
 The model uses ReLU as the activation function, while the output layer produces logits that are passed directly to the CrossEntropyLoss function. The network is trained using the Adam optimizer with a batch size of 64.
 
 This architecture was selected because it is deep enough to expose optimization-related effects, while still remaining simple and manageable for controlled experimentation within a course setting. It also serves as a consistent baseline, allowing the impact of modifications such as Batch Normalization and Dropout to be isolated and evaluated fairly.
+
 ---
 
 ## 4.2 Why Batch Normalization was chosen
@@ -106,8 +107,9 @@ Including Batch Normalization also allows us to observe how changes in the inter
 
 In this implementation, Batch Normalization is applied after each linear layer and before the ReLU activation:
 
-```python
+
 Linear -> BatchNorm1d -> ReLU
+
 ---
 
 ## 4.3 Compared Models
@@ -232,6 +234,7 @@ The models evaluated are:
 - MLP + BatchNorm + Dropout
 
 The aim is to determine whether improvements in performance are primarily driven by optimization benefits (BatchNorm), regularization effects (Dropout), or a combination of both.
+
 ---
 
 ### 5.4 Experiment 4 — Depth Study
@@ -331,6 +334,7 @@ This project examined the effect of Batch Normalization on deep feedforward neur
 The results show that Batch Normalization improves training stability, accelerates convergence, and leads to better overall performance compared to the baseline model. It also enables the network to handle higher learning rates more effectively and becomes increasingly beneficial as model depth increases.
 
 In comparison, Dropout primarily helps reduce overfitting, while Batch Normalization has a stronger impact on the optimization process. Combining both techniques provides a balance between stable training and improved generalization.
+
 ---
 ## 10. Future Work
 
@@ -352,4 +356,3 @@ To reproduce the experiments, install the required dependencies and run the main
 pip install -r requirements.txt
 python src/experiment.py
 
----
