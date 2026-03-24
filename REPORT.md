@@ -379,30 +379,12 @@ Possible future extensions include:
 
 ---
 
-## 11. Repository Structure
 
-```text
-batchnorm-impact-study/
-│
-├── src/
-│   ├── dataset.py
-│   ├── models.py
-│   ├── train.py
-│   ├── evaluate.py
-│   └── experiment.py
-│
-├── responsibilities/
-│   ├── 220911751.md
-│   └── teammate_id.md
-│
-├── requirements.txt
-├── README.md
-└── REPORT.md
-```
+
 
 ---
 
-## 12. How to Run
+## 11. How to Run
 
 ```bash
 pip install -r requirements.txt
@@ -412,12 +394,3 @@ python src/experiment.py
 This runs the main experiments and prints results for comparison.
 
 ---
-
-## 13. Notes for Final Submission
-
-Before submission, replace placeholder teammate IDs and fill the final numeric results after running the experiments. Also include:
-
-- screenshots of learning curves
-- confusion matrix image
-- final result tables
-- short interpretation under each experiment
