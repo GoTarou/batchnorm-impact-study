@@ -17,7 +17,9 @@ Epoch 2/2 | Train Loss: 0.9250 | Train Acc: 0.6410 | Val Loss: 0.8348 | Val Acc:
 Epoch 1/2 | Train Loss: 1.2363 | Train Acc: 0.6000 | Val Loss: 1.1168 | Val Acc: 0.6140
 Epoch 2/2 | Train Loss: 0.6567 | Train Acc: 0.7560 | Val Loss: 0.8225 | Val Acc: 0.7000
 \nFinal Results
+
 --------------------------------------------------------------------------------
+
 baseline_mlp: Acc=0.6680, Precision=0.7086, Recall=0.6680, F1=0.6339, Best Val Acc=0.6080, Epochs=2
 batchnorm_mlp: Acc=0.7700, Precision=0.7685, Recall=0.7700, F1=0.7610, Best Val Acc=0.7400, Epochs=2
 dropout_mlp: Acc=0.6340, Precision=0.6662, Recall=0.6340, F1=0.5989, Best Val Acc=0.6080, Epochs=2
