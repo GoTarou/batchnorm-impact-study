@@ -1,18 +1,21 @@
 # Batch Normalization Impact Study
 
-This project compares deep feedforward neural networks with and without Batch Normalization on the Fashion-MNIST dataset.
+This project investigates the effect of Batch Normalization on deep feedforward neural networks using the Fashion-MNIST dataset. The goal is to understand how BatchNorm influences training stability, convergence speed, and overall performance.
 
 ## Models
+
+The following model variants are implemented and compared:
+
 - Baseline MLP
 - MLP + BatchNorm
 - MLP + Dropout
 - MLP + BatchNorm + Dropout
 
-## Main goals
-- study training stability
+## Objectives
+- Analyze training stability
 - measure convergence speed
-- compare validation/test performance
-- analyze interaction with learning rate
+- compare validation annd test performance
+- study the efect of different learning rates
 
 ## Run
 ```bash
