@@ -1,3 +1,4 @@
+import os
 import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
 
@@ -9,11 +10,12 @@ def print_classification_results(y_true, y_pred):
     print(confusion_matrix(y_true, y_pred))
 
 def save_confusion_matrix(y_true, y_pred, model_name="model"):
+    os.makedirs("images", exist_ok=True)
     cm = confusion_matrix(y_true, y_pred)
     disp = ConfusionMatrixDisplay(confusion_matrix=cm)
     disp.plot(cmap=plt.cm.Blues)
     plt.title(f"Confusion Matrix - {model_name}")
-    plt.savefig(f"{model_name}_confusion_matrix.png")
+    plt.savefig(f"images/{model_name}_confusion_matrix.png")
     plt.close()
 
 
@@ -26,7 +28,8 @@ def plot_history(history, model_name="model"):
     plt.ylabel("Loss")
     plt.legend()
     plt.tight_layout()
-    plt.savefig(f"{model_name}_loss.png")
+    os.makedirs("images", exist_ok=True)
+    plt.savefig(f"images/{model_name}_loss.png")
     plt.close()
 
     plt.figure(figsize=(8, 5))
@@ -37,5 +40,5 @@ def plot_history(history, model_name="model"):
     plt.ylabel("Accuracy")
     plt.legend()
     plt.tight_layout()
-    plt.savefig(f"{model_name}_accuracy.png")
+    plt.savefig(f"images/{model_name}_accuracy.png")
     plt.close()

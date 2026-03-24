@@ -314,20 +314,20 @@ Typical expected findings:
 Here are the generated learning curves illustrating the training process for our models:
 
 **Baseline MLP vs. MLP + BatchNorm**
-![Baseline MLP Loss](./baseline_mlp_loss.png) ![BatchNorm MLP Loss](./batchnorm_mlp_loss.png)
+![Baseline MLP Loss](./images/baseline_mlp_loss.png) ![BatchNorm MLP Loss](./images/batchnorm_mlp_loss.png)
 
 **MLP + Dropout vs. MLP + BatchNorm + Dropout**
-![Dropout MLP Loss](./dropout_mlp_loss.png) ![BatchNorm + Dropout MLP Loss](./batchnorm_dropout_mlp_loss.png)
+![Dropout MLP Loss](./images/dropout_mlp_loss.png) ![BatchNorm + Dropout MLP Loss](./images/batchnorm_dropout_mlp_loss.png)
 
 **Baseline (High LR 0.01) vs. BatchNorm (High LR 0.01)**
-![Baseline High LR Loss](./baseline_high_lr_loss.png) ![BatchNorm High LR Loss](./batchnorm_high_lr_loss.png)
+![Baseline High LR Loss](./images/baseline_high_lr_loss.png) ![BatchNorm High LR Loss](./images/batchnorm_high_lr_loss.png)
 
-*(Accuracy graphs are also included in the repository codebase directory: e.g. `baseline_mlp_accuracy.png`)*
+*(Accuracy graphs are also included in the repository codebase directory: e.g. `images/baseline_mlp_accuracy.png`)*
 
 ### Confusion Matrix
 To further understand the classifier's class-wise distribution and errors, here is the generated confusion matrix for the final BatchNorm + Dropout network:
 
-![BatchNorm + Dropout MLP Confusion Matrix](./batchnorm_dropout_mlp_confusion_matrix.png)
+![BatchNorm + Dropout MLP Confusion Matrix](./images/batchnorm_dropout_mlp_confusion_matrix.png)
 
 ### Interpretations
 
