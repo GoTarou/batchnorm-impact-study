@@ -292,10 +292,10 @@ The following is the structure that should be filled after running the code.
 
 | Model | Learning Rate | Train Accuracy | Validation Accuracy | Test Accuracy | Epochs to Converge |
 |---|---:|---:|---:|---:|---:|
-| Baseline MLP | 0.001 | 64.30 | 60.80 | 66.80 | 2 |
-| MLP + BatchNorm | 0.001 | 80.10 | 74.00 | 77.00 | 2 |
-| MLP + Dropout | 0.001 | 51.80 | 60.80 | 63.40 | 2 |
-| MLP + BatchNorm + Dropout | 0.001 | 67.50 | 67.80 | 73.00 | 2 |
+| Baseline MLP | 0.001 | 90.91 | 88.38 | 88.38 | 12 |
+| MLP + BatchNorm | 0.001 | 92.71 | 88.26 | 88.26 | 13 |
+| MLP + Dropout | 0.001 | 88.23 | 88.38 | 88.38 | 18 |
+| MLP + BatchNorm + Dropout | 0.001 | 89.15 | 89.00 | 89.00 | 18 |
 
 ### Example interpretation
 Typical expected findings:

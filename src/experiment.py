@@ -16,7 +16,7 @@ def run_single_experiment(name, use_batchnorm=False, use_dropout=False, lr=0.001
         train_loader,
         val_loader,
         device=device,
-        epochs=2,
+        epochs=20,
         lr=lr,
         patience=5,
         weight_decay=1e-4,
@@ -57,7 +57,12 @@ def run_single_experiment(name, use_batchnorm=False, use_dropout=False, lr=0.001
 
 def main():
     experiments = [
+        ("baseline_mlp", False, False, 0.001),
+        ("batchnorm_mlp", True, False, 0.001),
+        ("dropout_mlp", False, True, 0.001),
         ("batchnorm_dropout_mlp", True, True, 0.001),
+        ("baseline_high_lr", False, False, 0.01),
+        ("batchnorm_high_lr", True, False, 0.01),
     ]
 
     results = []
