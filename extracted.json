@@ -1,8 +1,0 @@
-{
-    "baseline_mlp": "Epoch 12/20 | Train Loss: 0.2412 | Train Acc: 0.9091 | Val Loss: 0.3385 | Val Acc: 0.8838",
-    "batchnorm_mlp": "Epoch 13/20 | Train Loss: 0.1965 | Train Acc: 0.9271 | Val Loss: 0.3327 | Val Acc: 0.8826",
-    "dropout_mlp": "Epoch 18/20 | Train Loss: 0.3274 | Train Acc: 0.8823 | Val Loss: 0.3312 | Val Acc: 0.8838",
-    "batchnorm_dropout_mlp": "Epoch 18/20 | Train Loss: 0.3007 | Train Acc: 0.8915 | Val Loss: 0.3045 | Val Acc: 0.8900",
-    "baseline_high_lr": "Epoch 18/20 | Train Loss: 0.4059 | Train Acc: 0.8552 | Val Loss: 0.4790 | Val Acc: 0.8483",
-    "batchnorm_high_lr": "Epoch 15/20 | Train Loss: 0.3661 | Train Acc: 0.8654 | Val Loss: 0.3955 | Val Acc: 0.8592"
-}
