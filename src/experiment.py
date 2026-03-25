@@ -58,13 +58,19 @@ def run_single_experiment(name, use_batchnorm=False, use_dropout=False, lr=0.001
 def main():
     experiments = [
         ("baseline_mlp", False, False, 0.001),
-        ("batchnorm_mlp", True, False, 0.001),
-        ("dropout_mlp", False, True, 0.001),
-        ("batchnorm_dropout_mlp", True, True, 0.001),
-        ("baseline_high_lr", False, False, 0.01),
-        ("batchnorm_high_lr", True, False, 0.01),
-        ("baseline_very_high_lr", False, False, 0.05),
-        ("batchnorm_very_high_lr", True, False, 0.05),
+    ("batchnorm_mlp", True, False, 0.001),
+    ("dropout_mlp", False, True, 0.001),
+    ("batchnorm_dropout_mlp", True, True, 0.001),
+
+    ("baseline_high_lr", False, False, 0.01),
+    ("batchnorm_high_lr", True, False, 0.01),
+    ("dropout_high_lr", False, True, 0.01),
+    ("batchnorm_dropout_high_lr", True, True, 0.01),
+
+    ("baseline_very_high_lr", False, False, 0.05),
+    ("batchnorm_very_high_lr", True, False, 0.05),
+    ("dropout_very_high_lr", False, True, 0.05),
+    ("batchnorm_dropout_very_high_lr", True, True, 0.05),
     ]
 
     results = []
