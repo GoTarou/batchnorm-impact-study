@@ -16,11 +16,12 @@ class MLP(nn.Module):
             if use_dropout:
                 layers.append(nn.Dropout(dropout_p))
 
-        add_block(28 * 28, 256)
-        add_block(256, 128)
-        add_block(128, 64)
-        layers.append(nn.Linear(64, 10))
-
+        add_block(28 * 28, 512)
+        add_block(512,256)
+        add_block(256,128)
+        add_block(128,64) 
+        add_block(64,32)      
+        layers.append(nn.Linear(32, 10))
         self.network = nn.Sequential(*layers)
 
     def forward(self, x):
