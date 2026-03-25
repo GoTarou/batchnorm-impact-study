@@ -18,7 +18,7 @@ def run_single_experiment(name, use_batchnorm=False, use_dropout=False, lr=0.001
         device=device,
         epochs=20,
         lr=lr,
-        patience=5,
+        patience=7,
         weight_decay=1e-4,
     )
 
