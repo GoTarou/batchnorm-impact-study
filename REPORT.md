@@ -268,20 +268,35 @@ Accuracy provides an overall measure of performance, but it does not capture how
 
 The following table summarizes the performance of each model under the same experimental conditions:
 
-| Model | Learning Rate | Train Accuracy | Validation Accuracy | Test Accuracy | Epochs to Converge |
-|---|---:|---:|---:|---:|---:|
-| Baseline MLP | 0.001 | 90.91 | 88.38 | 88.38 | 12 |
-| MLP + BatchNorm | 0.001 | 92.71 | 88.26 | 88.26 | 13 |
-| MLP + Dropout | 0.001 | 88.23 | 88.38 | 88.38 | 18 |
-| MLP + BatchNorm + Dropout | 0.001 | 89.15 | 89.00 | 89.00 | 18 |
+## Final Results
+
+| Model | Accuracy | Precision | Recall | F1-score | Best Val Acc | Epochs |
+|------|---------|-----------|--------|---------|--------------|--------|
+| Baseline MLP | 0.8716 | 0.8715 | 0.8716 | 0.8708 | 0.8877 | 14 |
+| BatchNorm MLP | 0.8882 | 0.8890 | 0.8882 | 0.8884 | 0.8936 | 19 |
+| Dropout MLP | 0.8664 | 0.8676 | 0.8664 | 0.8661 | 0.8781 | 19 |
+| BatchNorm + Dropout MLP | 0.8791 | 0.8806 | 0.8791 | 0.8790 | 0.8868 | 20 |
+| Baseline (High LR = 0.01) | 0.8404 | 0.8423 | 0.8404 | 0.8401 | 0.8520 | 17 |
+| BatchNorm (High LR = 0.01) | 0.8515 | 0.8545 | 0.8515 | 0.8513 | 0.8588 | 13 |
+| Dropout (High LR = 0.01) | 0.5233 | 0.4613 | 0.5233 | 0.4443 | 0.5317 | 8 |
+| BatchNorm + Dropout (High LR = 0.01) | 0.8307 | 0.8279 | 0.8307 | 0.8273 | 0.8412 | 20 |
+| Baseline (Very High LR = 0.05) | 0.1000 | 0.0100 | 0.1000 | 0.0182 | 0.1057 | 9 |
+| BatchNorm (Very High LR = 0.05) | 0.8000 | 0.8074 | 0.8000 | 0.7939 | 0.8018 | 20 |
+| Dropout (Very High LR = 0.05) | 0.1000 | 0.0100 | 0.1000 | 0.0182 | 0.1057 | 13 |
+| BatchNorm + Dropout (Very High LR = 0.05) | 0.7027 | 0.6445 | 0.7027 | 0.6555 | 0.7043 | 12 |
 
 ### Interpretation
 
-The results show that Batch Normalization significantly improves both training stability and overall performance. Compared to the baseline model, the BatchNorm variant achieves higher validation and test accuracy, indicating better generalization.
 
-BatchNorm also leads to faster and more stable convergence, as reflected in the reduced training fluctuations and consistent performance across epochs. In contrast, the baseline model shows lower accuracy and less stable behavior during training.
+The results reveal that the impact of Batch Normalization depends strongly on the difficulty of the optimization setting rather than simply improving final accuracy across all cases.
 
-Dropout contributes to reducing overfitting, but its impact on optimization is less direct. When combined with BatchNorm, the model achieves a balance between stable training and improved generalization, resulting in competitive overall performance.
+Under standard training conditions (learning rate = 0.001), all models achieve relatively high and similar performance, with accuracies in the range of approximately 86%–89%. In this regime, the baseline model already performs well, leaving limited room for large improvements. Batch Normalization provides a modest increase in performance compared to the baseline, while Dropout slightly reduces training performance due to its regularization effect. The combined model (BatchNorm + Dropout) remains competitive, but no significant performance gap is observed between models. This indicates that when the optimization problem is relatively easy, architectural enhancements have a limited effect on final accuracy.
+
+As the learning rate increases to 0.01, the optimization problem becomes more challenging, and clearer differences between models begin to emerge. The baseline model experiences a noticeable drop in performance, while the BatchNorm model maintains higher accuracy and better validation performance. Dropout alone performs poorly in this setting, suggesting that regularization does not address instability caused by aggressive optimization. However, when combined with Batch Normalization, the model regains stability and achieves competitive performance. This demonstrates that Batch Normalization contributes primarily to stabilizing the training process, while Dropout alone is insufficient under these conditions.
+
+The most significant findings appear at a very high learning rate (0.05). In this setting, the baseline and Dropout-only models fail completely, achieving approximately 10% accuracy, which corresponds to random guessing. This indicates that the models are unable to converge due to unstable updates during training. In contrast, the BatchNorm model remains stable and achieves approximately 80% accuracy, demonstrating its ability to control internal covariate shift and maintain meaningful gradient flow even under extreme optimization conditions. The combination of Batch Normalization and Dropout also remains functional, though with lower performance than BatchNorm alone, suggesting that while Dropout adds regularization, it may slightly interfere with optimization in highly unstable settings.
+
+Overall, the results show that Batch Normalization does not primarily act as an accuracy booster in well-behaved scenarios, but instead plays a critical role in enabling stable and effective training when the optimization problem becomes difficult. Its ability to prevent model collapse at high learning rates highlights its importance in deep neural network training. Dropout, on the other hand, contributes mainly to regularization and generalization, but does not address instability on its own. The combination of both techniques provides a balance between stability and generalization, although Batch Normalization is the dominant factor in ensuring successful optimization under challenging conditions.
 
 ---
 ## 8. Discussion
