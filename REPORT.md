@@ -247,20 +247,24 @@ The goal is to observe whether deeper networks benefit more from Batch Normaliza
 
 ---
 
-### 5.5 Experiment 5 — Optimizer Comparison (Chapter 8: §8.3, §8.5)
+### 5.5 Experiment 5 — Optimizer Comparison
 
-This experiment extends the project to cover optimization algorithms from Chapter 8. The BatchNorm MLP (best-performing model) is trained using four different optimizers to compare their convergence behavior and final performance:
+To extend the analysis, the best-performing architecture (MLP with Batch Normalization) was trained using different optimization methods. The goal was to observe how the choice of optimizer affects convergence behavior, training stability, and final performance.
 
-| Optimizer | Chapter 8 Reference |
+The following optimizers were considered:
+
+| Optimizer | Description |
 |---|---|
-| SGD (plain) | §8.3.1 — Stochastic Gradient Descent |
-| SGD + Momentum (α = 0.9) | §8.3.2 — Momentum |
-| SGD + Nesterov (α = 0.9) | §8.3.3 — Nesterov Momentum |
-| Adam | §8.5.3 — Adam |
+| SGD | Standard stochastic gradient descent |
+| SGD + Momentum | Incorporates past gradients to accelerate updates |
+| SGD + Nesterov | Looks ahead before applying the gradient update |
+| Adam | Adaptive optimizer with per-parameter learning rates |
 
-SGD-based optimizers are trained with a **linear learning rate schedule** (starting LR decayed to 1% over training), as described in §8.3.1, equation 8.14. This is necessary because, unlike Adam, plain SGD requires the learning rate to decrease over time to guarantee convergence.
+For a fair comparison, all models were trained under the same conditions, including the same architecture, dataset split, batch size, and number of epochs. For SGD-based methods, the learning rate was gradually reduced during training, since these optimizers are more sensitive to fixed learning rates and may struggle to converge otherwise.
 
-In addition, the **gradient norm** is tracked every epoch during training, mirroring Figure 8.1 from §8.2.1, to visualize whether gradients grow, shrink, or remain stable across different optimizers.
+In addition to standard performance metrics (accuracy, precision, recall, and F1-score), the training behavior of each optimizer was analyzed. In particular, the evolution of gradients over time was monitored to understand whether updates remained stable or became unstable during training.
+
+This experiment allows us to compare not only the final performance of each optimizer, but also how efficiently and reliably they guide the model toward convergence.
 
 ---
 
