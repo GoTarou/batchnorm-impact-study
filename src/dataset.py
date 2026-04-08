@@ -1,6 +1,10 @@
 from torch.utils.data import DataLoader, random_split, Subset
 from torchvision import datasets, transforms
 import torch
+import os
+
+# Resolve data directory relative to this file, not the working directory
+_DATA_ROOT = os.path.join(os.path.dirname(__file__), "..", "data")
 
 
 def get_dataloaders(batch_size: int = 64, val_size: int = 12000):
@@ -10,14 +14,14 @@ def get_dataloaders(batch_size: int = 64, val_size: int = 12000):
     ])
 
     train_dataset = datasets.FashionMNIST(
-        root="data",
+        root=_DATA_ROOT,
         train=True,
         download=True,
         transform=transform
     )
 
     test_dataset = datasets.FashionMNIST(
-        root="data",
+        root=_DATA_ROOT,
         train=False,
         download=True,
         transform=transform

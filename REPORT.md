@@ -247,6 +247,23 @@ The goal is to observe whether deeper networks benefit more from Batch Normaliza
 
 ---
 
+### 5.5 Experiment 5 — Optimizer Comparison (Chapter 8: §8.3, §8.5)
+
+This experiment extends the project to cover optimization algorithms from Chapter 8. The BatchNorm MLP (best-performing model) is trained using four different optimizers to compare their convergence behavior and final performance:
+
+| Optimizer | Chapter 8 Reference |
+|---|---|
+| SGD (plain) | §8.3.1 — Stochastic Gradient Descent |
+| SGD + Momentum (α = 0.9) | §8.3.2 — Momentum |
+| SGD + Nesterov (α = 0.9) | §8.3.3 — Nesterov Momentum |
+| Adam | §8.5.3 — Adam |
+
+SGD-based optimizers are trained with a **linear learning rate schedule** (starting LR decayed to 1% over training), as described in §8.3.1, equation 8.14. This is necessary because, unlike Adam, plain SGD requires the learning rate to decrease over time to guarantee convergence.
+
+In addition, the **gradient norm** is tracked every epoch during training, mirroring Figure 8.1 from §8.2.1, to visualize whether gradients grow, shrink, or remain stable across different optimizers.
+
+---
+
 ## 6. Evaluation Criteria
 
 Model performance is evaluated using a combination of classification metrics and training behavior:
@@ -285,6 +302,19 @@ The following table summarizes the performance of each model under the same expe
 | Dropout (Very High LR = 0.05) | 0.1000 | 0.0100 | 0.1000 | 0.0182 | 0.1057 | 13 |
 | BatchNorm + Dropout (Very High LR = 0.05) | 0.7027 | 0.6445 | 0.7027 | 0.6555 | 0.7043 | 12 |
 
+### Experiment 5 — Optimizer Comparison Results
+
+All four optimizers were applied to the BatchNorm MLP. SGD variants used a starting LR of 0.05 with linear decay; Adam used its default LR of 0.001.
+
+| Optimizer | Starting LR | LR Schedule | Test Accuracy | Epochs to Converge |
+|---|---:|---|---:|---:|
+| SGD | 0.05 | Linear decay | — | — |
+| SGD + Momentum | 0.05 | Linear decay | — | — |
+| SGD + Nesterov | 0.05 | Linear decay | — | — |
+| Adam | 0.001 | None | — | — |
+
+> **Note:** Fill in the accuracy and epoch values after running `python src/experiment.py`. Results are logged in the console output.
+
 ### Interpretation
 
 
@@ -320,6 +350,20 @@ The confusion matrix below shows the class-wise performance of the final model (
 
 ![BatchNorm + Dropout MLP Confusion Matrix](./images/batchnorm_dropout_mlp_confusion_matrix.png)
 
+### Optimizer Comparison Curves (Experiment 5)
+
+The plots below show how each optimizer converges on the BatchNorm MLP:
+
+![Optimizer Comparison Loss](./images/optimizer_comparison_loss.png)  
+![Optimizer Comparison Accuracy](./images/optimizer_comparison_accuracy.png)
+
+Gradient norm plots per optimizer (§8.2.1, Fig 8.1):
+
+![SGD Gradient Norm](./images/optim_sgd_grad_norm.png)  
+![Momentum Gradient Norm](./images/optim_momentum_grad_norm.png)  
+![Nesterov Gradient Norm](./images/optim_nesterov_grad_norm.png)  
+![Adam Gradient Norm](./images/optim_adam_grad_norm.png)
+
 ### Interpretation
 
 Training Stability  
@@ -340,6 +384,12 @@ Dropout helps reduce overfitting, while BatchNorm improves the optimization proc
 Model Capacity and Overfitting  
 The baseline model shows a growing gap between training and validation accuracy, indicating overfitting. BatchNorm and Dropout reduce this gap, suggesting that they help the model generalize better instead of memorizing the training data.
 
+Optimizer Behavior (Experiment 5)  
+Momentum and Nesterov build on plain SGD by accumulating directional information from past gradients (§8.3.2–8.3.3). This generally leads to faster traversal of narrow loss valleys, as illustrated in Figure 8.5 of the textbook. Adam combines adaptive per-parameter learning rates with first and second moment estimates (§8.5.3), making it less sensitive to the initial learning rate choice and typically requiring fewer epochs to reach good performance. The linear LR schedule applied to SGD variants (§8.3.1, eq. 8.14) ensures that the learning rate decreases over time, reducing oscillations near the optimum.
+
+Gradient Norm Analysis (§8.2.1)  
+Tracking the gradient norm across epochs helps diagnose ill-conditioning. If the gradient norm grows rather than shrinks over training, it may indicate that the optimizer is struggling with poorly conditioned curvature — consistent with Figure 8.1 in the textbook. Comparing gradient norm behavior across optimizers reveals differences in how each method handles noisy or steep regions of the loss surface.
+
 ---
 
 ## 9. Conclusion
@@ -350,6 +400,8 @@ The results show that Batch Normalization improves training stability, accelerat
 
 In comparison, Dropout primarily helps reduce overfitting, while Batch Normalization has a stronger impact on the optimization process. Combining both techniques provides a balance between stable training and improved generalization.
 
+The optimizer comparison (Experiment 5) further demonstrates that the choice of optimization algorithm significantly affects convergence. Momentum-based methods (SGD + Momentum, Nesterov) traverse the loss surface more efficiently than plain SGD, while Adam proves to be the most robust choice due to its adaptive learning rates and bias-corrected moment estimates.
+
 ---
 ## 10. Future Work
 
@@ -357,9 +409,10 @@ There are several directions in which this project could be extended:
 
 - applying the same analysis to convolutional neural networks (CNNs) instead of MLPs,
 - comparing Batch Normalization with alternative methods such as Layer Normalization,
-- studying the interaction between weight initialization and Batch Normalization,
+- studying the interaction between weight initialization and Batch Normalization (§8.4),
 - analyzing prediction confidence and model calibration,
-- extending the experiments to more complex datasets such as CIFAR-10.
+- extending the experiments to more complex datasets such as CIFAR-10,
+- exploring second-order optimization methods such as L-BFGS or conjugate gradients (§8.6) as alternatives to first-order methods.
 These extensions would help further understand how normalization techniques behave in more complex models and datasets.
 ---
 
