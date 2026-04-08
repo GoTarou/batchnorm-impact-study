@@ -88,9 +88,11 @@ The baseline model is a deep feedforward neural network (MLP) with three hidden 
 **Architecture:**
 
 - Input layer: 784
-- Hidden layer 1: 256 neurons
-- Hidden layer 2: 128 neurons
-- Hidden layer 3: 64 neurons
+- Hidden layer 1: 512 neurons
+- Hidden layer 2: 256 neurons
+- Hidden layer 3: 128 neurons
+- Hidden layer 4: 64 neurons
+- Hidden layer 5: 32 neurons
 - Output layer: 10 neurons
 
 The model uses ReLU as the activation function, while the output layer produces logits that are passed directly to the CrossEntropyLoss function. The network is trained using the Adam optimizer with a batch size of 64.
@@ -143,7 +145,7 @@ Cross-entropy is better suited than Mean Squared Error for classification becaus
 
 The model is trained using the **Adam** optimizer, which adapts the learning rate for each parameter and generally leads to faster and more stable convergence compared to basic gradient descent methods.
 
-Adam was preferred over plain **stochastic gradient descent** (SGD) because it requires less manual tuning and performs reliably across different model configurations. This makes it a suitable choice for controlled experiments, where the goal is to study the effect of architectural changes rather than optimization difficulties.
+Adam was preferred over plain **stochastic gradient descent** (SGD) because it requires less manual tuning and performs reliably across different model configurations. This makes it a suitable choice for controlled experiments, where the goal is to study the effect of architectural changes rather than optimization difficulties. In practice, Adam showed more consistent convergence, while SGD-based methods required more careful learning rate control to avoid instability.
 
 ---
 ## 4.6 Regularization Methods
@@ -214,9 +216,9 @@ This experiment evaluates how Batch Normalization affects training stability und
 
 The learning rates tested are:
 
-- 0.001
-- 0.005
-- 0.01
+- 0.001  
+- 0.01  
+- 0.05  
 
 The goal is to observe whether the baseline model becomes unstable at higher learning rates, while the BatchNorm model maintains more stable and consistent convergence.
 
@@ -317,23 +319,6 @@ All four optimizers were applied to the BatchNorm MLP. SGD variants used a start
 | SGD + Nesterov | 0.05 | Linear decay | 89.56 | 17 |
 | Adam | 0.001 | None | 88.40 | 16 |
 
-> **Note:** Fill in the accuracy and epoch values after running `python src/experiment.py`. Results are logged in the console output.
-
-### Interpretation
-
-
-The results reveal that the impact of Batch Normalization depends strongly on the difficulty of the optimization setting rather than simply improving final accuracy across all cases.
-
-Under standard training conditions (learning rate = 0.001), all models achieve relatively high and similar performance, with accuracies in the range of approximately 86%–89%. In this regime, the baseline model already performs well, leaving limited room for large improvements. Batch Normalization provides a modest increase in performance compared to the baseline, while Dropout slightly reduces training performance due to its regularization effect. The combined model (BatchNorm + Dropout) remains competitive, but no significant performance gap is observed between models. This indicates that when the optimization problem is relatively easy, architectural enhancements have a limited effect on final accuracy.
-
-As the learning rate increases to 0.01, the optimization problem becomes more challenging, and clearer differences between models begin to emerge. The baseline model experiences a noticeable drop in performance, while the BatchNorm model maintains higher accuracy and better validation performance. Dropout alone performs poorly in this setting, suggesting that regularization does not address instability caused by aggressive optimization. However, when combined with Batch Normalization, the model regains stability and achieves competitive performance. This demonstrates that Batch Normalization contributes primarily to stabilizing the training process, while Dropout alone is insufficient under these conditions.
-
-The most significant findings appear at a very high learning rate (0.05). In this setting, the baseline and Dropout-only models fail completely, achieving approximately 10% accuracy, which corresponds to random guessing. This indicates that the models are unable to converge due to unstable updates during training. In contrast, the BatchNorm model remains stable and achieves approximately 80% accuracy, demonstrating its ability to control internal covariate shift and maintain meaningful gradient flow even under extreme optimization conditions. The combination of Batch Normalization and Dropout also remains functional, though with lower performance than BatchNorm alone, suggesting that while Dropout adds regularization, it may slightly interfere with optimization in highly unstable settings.
-
-Overall, the results show that Batch Normalization does not primarily act as an accuracy booster in well-behaved scenarios, but instead plays a critical role in enabling stable and effective training when the optimization problem becomes difficult. Its ability to prevent model collapse at high learning rates highlights its importance in deep neural network training. Dropout, on the other hand, contributes mainly to regularization and generalization, but does not address instability on its own. The combination of both techniques provides a balance between stability and generalization, although Batch Normalization is the dominant factor in ensuring successful optimization under challenging conditions.
-
----
-## 8. Discussion
 
 ### Learning Curves
 The learning curves illustrate how each model behaves during training.
@@ -361,63 +346,67 @@ The plots below show how each optimizer converges on the BatchNorm MLP:
 ![Optimizer Comparison Loss](./images/optimizer_comparison_loss.png)  
 ![Optimizer Comparison Accuracy](./images/optimizer_comparison_accuracy.png)
 
-Gradient norm plots per optimizer (§8.2.1, Fig 8.1):
+Gradient norm plots per optimizer:
 
 ![SGD Gradient Norm](./images/optim_sgd_grad_norm.png)  
 ![Momentum Gradient Norm](./images/optim_momentum_grad_norm.png)  
 ![Nesterov Gradient Norm](./images/optim_nesterov_grad_norm.png)  
 ![Adam Gradient Norm](./images/optim_adam_grad_norm.png)
 
-### Interpretation
+---
 
-Training Stability  
-BatchNorm leads to a noticeably smoother training process. The baseline model shows more fluctuation in loss values, while the BatchNorm model produces more stable and consistent updates across epochs.
+## 8. Discussion
 
-Convergence Speed  
-The model with BatchNorm reaches strong validation performance faster than the baseline. The baseline requires more epochs to reduce its loss, whereas BatchNorm accelerates the early stages of learning.
+### 8.1 Model Behavior and Training Stability
 
-Generalization  
-BatchNorm improves generalization slightly, as seen in the higher validation and test accuracy. This suggests that the model not only learns faster but also finds more reliable solutions.
+The results show that the impact of Batch Normalization depends on the difficulty of the training setting rather than simply improving accuracy in all cases.
 
-Interaction with Learning Rate  
-At higher learning rates (e.g., 0.01), the baseline model becomes unstable, with less consistent convergence. In contrast, the BatchNorm model remains stable and continues to train effectively, showing that it is less sensitive to aggressive optimization settings.
+Under standard training conditions (learning rate = 0.001), all models achieve similar performance, with accuracies between approximately 86% and 89%. In this setting, the baseline model already performs well, leaving limited room for improvement. Batch Normalization provides a small increase in performance, while Dropout slightly reduces training accuracy due to its regularization effect. The combined model (BatchNorm + Dropout) remains competitive, but no major differences appear between models. This suggests that when the optimization problem is relatively easy, architectural changes have limited impact on final accuracy.
 
-Interaction with Dropout  
-Dropout helps reduce overfitting, while BatchNorm improves the optimization process. When combined, they produce a model that benefits from both stable training and improved generalization.
+As the learning rate increases to 0.01, the optimization becomes more difficult and clearer differences begin to appear. The baseline model shows a drop in performance, while the BatchNorm model maintains higher accuracy and more stable validation behavior. Dropout alone performs poorly in this setting, indicating that regularization does not solve instability caused by aggressive updates. However, when combined with Batch Normalization, the model remains stable and achieves competitive performance. This shows that Batch Normalization primarily improves the stability of training, while Dropout alone is not sufficient under these conditions.
 
-Model Capacity and Overfitting  
-The baseline model shows a growing gap between training and validation accuracy, indicating overfitting. BatchNorm and Dropout reduce this gap, suggesting that they help the model generalize better instead of memorizing the training data.
+The most significant behavior appears at a learning rate of 0.05. In this case, both the baseline and Dropout-only models fail completely, achieving around 10% accuracy, which corresponds to random guessing. This indicates that the models are unable to converge due to unstable updates. In contrast, the BatchNorm model remains stable and achieves approximately 80% accuracy. The combination of BatchNorm and Dropout also continues to train successfully, although with lower performance than BatchNorm alone. This suggests that while Dropout adds regularization, it can slightly interfere with optimization in highly unstable settings.
 
-Optimizer Behavior (Experiment 5)  
-Momentum and Nesterov build on plain SGD by accumulating directional information from past gradients (§8.3.2–8.3.3). This generally leads to faster traversal of narrow loss valleys, as illustrated in Figure 8.5 of the textbook. Adam combines adaptive per-parameter learning rates with first and second moment estimates (§8.5.3), making it less sensitive to the initial learning rate choice and typically requiring fewer epochs to reach good performance. The linear LR schedule applied to SGD variants (§8.3.1, eq. 8.14) ensures that the learning rate decreases over time, reducing oscillations near the optimum.
+Overall, Batch Normalization does not act mainly as an accuracy booster in easy scenarios, but instead plays a key role in enabling stable and effective training when the optimization problem becomes more difficult. Its ability to prevent model collapse at high learning rates highlights its importance. Dropout, on the other hand, contributes mainly to regularization and generalization, but does not address instability by itself. The combination of both techniques provides a balance between stability and generalization, although Batch Normalization is the dominant factor in maintaining successful training under challenging conditions.
 
-Gradient Norm Analysis (§8.2.1)  
-Tracking the gradient norm across epochs helps diagnose ill-conditioning. If the gradient norm grows rather than shrinks over training, it may indicate that the optimizer is struggling with poorly conditioned curvature — consistent with Figure 8.1 in the textbook. Comparing gradient norm behavior across optimizers reveals differences in how each method handles noisy or steep regions of the loss surface.
+
+### 8.2 Optimization Method Analysis
+
+The comparison of optimization methods shows clear differences in how each approach affects convergence behavior and training stability.
+
+Plain stochastic gradient descent (SGD) tends to converge more slowly and is sensitive to the choice of learning rate. In contrast, adding momentum improves convergence by smoothing updates and reducing oscillations, allowing the model to progress more consistently during training. Nesterov momentum further improves this behavior by adjusting updates based on an estimated future position, which can lead to slightly faster and more stable convergence.
+
+Adam behaves differently from SGD-based methods, as it adapts the learning rate for each parameter individually. This makes it less sensitive to initial hyperparameter choices and typically allows it to reach good performance in fewer epochs. As a result, Adam often shows faster early convergence compared to the other optimizers.
+
+The analysis of training behavior shows that different optimizers handle instability in different ways. SGD-based methods can struggle when updates become too large, especially without proper learning rate control. Momentum-based methods help mitigate this by stabilizing the direction of updates. Adam, by adjusting step sizes automatically, is generally more robust in handling noisy or steep regions of the loss landscape.
+
+Tracking the gradient magnitude during training provides additional insight into optimizer behavior. Stable training is associated with gradients that decrease smoothly over time, while unstable training is often reflected in large or fluctuating gradient values. Comparing these patterns across optimizers highlights how each method responds to difficult optimization conditions.
+
+Overall, the choice of optimizer has a direct impact on both convergence speed and stability. While all methods can reach reasonable performance under well-behaved settings, adaptive and momentum-based approaches provide more reliable training when the optimization problem becomes more challenging.
 
 ---
 
 ## 9. Conclusion
 
+
 This project examined the effect of Batch Normalization on deep feedforward neural networks using the Fashion-MNIST dataset.
 
-The results show that Batch Normalization improves training stability, accelerates convergence, and leads to better overall performance compared to the baseline model. It also enables the network to handle higher learning rates more effectively and becomes increasingly beneficial as model depth increases.
+The results show that Batch Normalization has a limited impact on final accuracy under standard training conditions, where all models achieve similar performance. However, it consistently improves training stability and convergence behavior.
 
-In comparison, Dropout primarily helps reduce overfitting, while Batch Normalization has a stronger impact on the optimization process. Combining both techniques provides a balance between stable training and improved generalization.
+As the optimization setting becomes more challenging, particularly at higher learning rates, the role of Batch Normalization becomes more significant. In these cases, the baseline model fails to converge and collapses to near-random performance, while the BatchNorm model remains stable and continues to learn effectively. This highlights that the primary benefit of Batch Normalization lies in enabling reliable training rather than directly increasing accuracy.
 
-The optimizer comparison (Experiment 5) further demonstrates that the choice of optimization algorithm significantly affects convergence. Momentum-based methods (SGD + Momentum, Nesterov) traverse the loss surface more efficiently than plain SGD, while Adam proves to be the most robust choice due to its adaptive learning rates and bias-corrected moment estimates.
+Dropout, in comparison, mainly contributes to regularization and has a smaller effect on optimization stability. On its own, it does not prevent training failure under difficult conditions, but when combined with Batch Normalization, it provides a balance between stability and generalization.
+
+The optimizer comparison further shows that the choice of optimization method influences convergence speed and stability. Momentum-based methods improve the behavior of standard SGD by reducing oscillations, while Adam provides more consistent performance due to its adaptive update mechanism. Overall, both model design and optimizer choice play an important role in achieving stable and effective training.
 
 ---
 ## 10. Future Work
 
-There are several directions in which this project could be extended:
 
-- applying the same analysis to convolutional neural networks (CNNs) instead of MLPs,
-- comparing Batch Normalization with alternative methods such as Layer Normalization,
-- studying the interaction between weight initialization and Batch Normalization (§8.4),
-- analyzing prediction confidence and model calibration,
-- extending the experiments to more complex datasets such as CIFAR-10,
-- exploring second-order optimization methods such as L-BFGS or conjugate gradients (§8.6) as alternatives to first-order methods.
-These extensions would help further understand how normalization techniques behave in more complex models and datasets.
+This study focused on a fixed architecture and dataset, which limits the scope of the conclusions. Future work could extend the analysis by evaluating deeper or more complex network architectures, where the impact of Batch Normalization may be more pronounced. 
+
+Additionally, experiments on more challenging datasets could provide further insight into how these techniques scale to harder tasks. The interaction between Batch Normalization, Dropout, and different optimization methods could also be explored in greater detail, particularly in settings where training instability is more severe.
+
 ---
 
 ## 11. How to Run
