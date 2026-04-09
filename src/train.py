@@ -109,11 +109,11 @@ def train_model(
             loss.backward()
 
             # Compute gradient norm before stepping (§8.2.1)
-            total_norm = 0.0
+            total_norm_sq = torch.tensor(0.0, device=device)
             for p in model.parameters():
                 if p.grad is not None:
-                    total_norm += p.grad.data.norm(2).item() ** 2
-            epoch_grad_norm += total_norm ** 0.5
+                    total_norm_sq += p.grad.data.norm(2) ** 2
+            epoch_grad_norm += total_norm_sq.sqrt().item()
             num_batches += 1
 
             optimizer.step()

@@ -1,0 +1,81 @@
+[main 0417b91] Auto-update: Generate Experiment 5 images and table results
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+Starting optimizer experiments. This may take 15-20 minutes...
+
+Running Experiment 5 — Optimizer: SGD
+Epoch 1/20 | LR: 0.047525 | Train Loss: 0.5412 | Train Acc: 0.8250 | Val Loss: 0.3842 | Val Acc: 0.8638 | Grad Norm: 2.8839
+Epoch 2/20 | LR: 0.045050 | Train Loss: 0.3570 | Train Acc: 0.8709 | Val Loss: 0.3279 | Val Acc: 0.8810 | Grad Norm: 2.6110
+Epoch 3/20 | LR: 0.042575 | Train Loss: 0.3135 | Train Acc: 0.8851 | Val Loss: 0.3267 | Val Acc: 0.8830 | Grad Norm: 2.5990
+Epoch 4/20 | LR: 0.040100 | Train Loss: 0.2814 | Train Acc: 0.8975 | Val Loss: 0.3139 | Val Acc: 0.8839 | Grad Norm: 2.6342
+Epoch 5/20 | LR: 0.037625 | Train Loss: 0.2567 | Train Acc: 0.9040 | Val Loss: 0.3080 | Val Acc: 0.8872 | Grad Norm: 2.6537
+Epoch 6/20 | LR: 0.035150 | Train Loss: 0.2343 | Train Acc: 0.9136 | Val Loss: 0.2968 | Val Acc: 0.8918 | Grad Norm: 2.6969
+Epoch 7/20 | LR: 0.032675 | Train Loss: 0.2164 | Train Acc: 0.9203 | Val Loss: 0.3032 | Val Acc: 0.8934 | Grad Norm: 2.7738
+Epoch 8/20 | LR: 0.030200 | Train Loss: 0.1998 | Train Acc: 0.9261 | Val Loss: 0.3023 | Val Acc: 0.8918 | Grad Norm: 2.9112
+Epoch 9/20 | LR: 0.027725 | Train Loss: 0.1812 | Train Acc: 0.9327 | Val Loss: 0.3033 | Val Acc: 0.8922 | Grad Norm: 2.9347
+Epoch 10/20 | LR: 0.025250 | Train Loss: 0.1662 | Train Acc: 0.9383 | Val Loss: 0.2952 | Val Acc: 0.8978 | Grad Norm: 3.0214
+Epoch 11/20 | LR: 0.022775 | Train Loss: 0.1483 | Train Acc: 0.9459 | Val Loss: 0.3145 | Val Acc: 0.8960 | Grad Norm: 3.0382
+Epoch 12/20 | LR: 0.020300 | Train Loss: 0.1369 | Train Acc: 0.9497 | Val Loss: 0.3164 | Val Acc: 0.8959 | Grad Norm: 3.1373
+Epoch 13/20 | LR: 0.017825 | Train Loss: 0.1237 | Train Acc: 0.9559 | Val Loss: 0.3129 | Val Acc: 0.8978 | Grad Norm: 3.1445
+Epoch 14/20 | LR: 0.015350 | Train Loss: 0.1093 | Train Acc: 0.9604 | Val Loss: 0.3268 | Val Acc: 0.8946 | Grad Norm: 3.1904
+Epoch 15/20 | LR: 0.012875 | Train Loss: 0.0952 | Train Acc: 0.9663 | Val Loss: 0.3249 | Val Acc: 0.8991 | Grad Norm: 3.1553
+Early stopping triggered.
+
+Running Experiment 5 — Optimizer: SGD + Momentum
+Epoch 1/20 | LR: 0.047525 | Train Loss: 0.5277 | Train Acc: 0.8149 | Val Loss: 0.4269 | Val Acc: 0.8451 | Grad Norm: 1.1120
+Epoch 2/20 | LR: 0.045050 | Train Loss: 0.3906 | Train Acc: 0.8574 | Val Loss: 0.4060 | Val Acc: 0.8506 | Grad Norm: 0.8764
+Epoch 3/20 | LR: 0.042575 | Train Loss: 0.3453 | Train Acc: 0.8748 | Val Loss: 0.3319 | Val Acc: 0.8807 | Grad Norm: 0.8457
+Epoch 4/20 | LR: 0.040100 | Train Loss: 0.3172 | Train Acc: 0.8822 | Val Loss: 0.3264 | Val Acc: 0.8820 | Grad Norm: 0.8599
+Epoch 5/20 | LR: 0.037625 | Train Loss: 0.2943 | Train Acc: 0.8913 | Val Loss: 0.3308 | Val Acc: 0.8806 | Grad Norm: 0.8676
+Epoch 6/20 | LR: 0.035150 | Train Loss: 0.2768 | Train Acc: 0.8968 | Val Loss: 0.3095 | Val Acc: 0.8873 | Grad Norm: 0.8901
+Epoch 7/20 | LR: 0.032675 | Train Loss: 0.2577 | Train Acc: 0.9045 | Val Loss: 0.2992 | Val Acc: 0.8893 | Grad Norm: 0.8995
+Epoch 8/20 | LR: 0.030200 | Train Loss: 0.2416 | Train Acc: 0.9095 | Val Loss: 0.3033 | Val Acc: 0.8920 | Grad Norm: 0.9225
+Epoch 9/20 | LR: 0.027725 | Train Loss: 0.2265 | Train Acc: 0.9154 | Val Loss: 0.3069 | Val Acc: 0.8890 | Grad Norm: 0.9414
+Epoch 10/20 | LR: 0.025250 | Train Loss: 0.2114 | Train Acc: 0.9205 | Val Loss: 0.3206 | Val Acc: 0.8838 | Grad Norm: 0.9821
+Epoch 11/20 | LR: 0.022775 | Train Loss: 0.2009 | Train Acc: 0.9246 | Val Loss: 0.2899 | Val Acc: 0.8986 | Grad Norm: 1.0036
+Epoch 12/20 | LR: 0.020300 | Train Loss: 0.1876 | Train Acc: 0.9294 | Val Loss: 0.3161 | Val Acc: 0.8918 | Grad Norm: 1.0510
+Epoch 13/20 | LR: 0.017825 | Train Loss: 0.1751 | Train Acc: 0.9336 | Val Loss: 0.2981 | Val Acc: 0.8963 | Grad Norm: 1.0782
+Epoch 14/20 | LR: 0.015350 | Train Loss: 0.1607 | Train Acc: 0.9400 | Val Loss: 0.3190 | Val Acc: 0.8944 | Grad Norm: 1.1347
+Epoch 15/20 | LR: 0.012875 | Train Loss: 0.1455 | Train Acc: 0.9458 | Val Loss: 0.3217 | Val Acc: 0.8940 | Grad Norm: 1.1410
+Epoch 16/20 | LR: 0.010400 | Train Loss: 0.1314 | Train Acc: 0.9509 | Val Loss: 0.3314 | Val Acc: 0.8931 | Grad Norm: 1.1919
+Early stopping triggered.
+
+Running Experiment 5 — Optimizer: SGD + Nesterov
+Epoch 1/20 | LR: 0.047525 | Train Loss: 0.5151 | Train Acc: 0.8188 | Val Loss: 0.3861 | Val Acc: 0.8564 | Grad Norm: 1.1545
+Epoch 2/20 | LR: 0.045050 | Train Loss: 0.3792 | Train Acc: 0.8625 | Val Loss: 0.3435 | Val Acc: 0.8792 | Grad Norm: 0.9175
+Epoch 3/20 | LR: 0.042575 | Train Loss: 0.3367 | Train Acc: 0.8757 | Val Loss: 0.3246 | Val Acc: 0.8781 | Grad Norm: 0.8910
+Epoch 4/20 | LR: 0.040100 | Train Loss: 0.3113 | Train Acc: 0.8857 | Val Loss: 0.3341 | Val Acc: 0.8805 | Grad Norm: 0.8884
+Epoch 5/20 | LR: 0.037625 | Train Loss: 0.2870 | Train Acc: 0.8935 | Val Loss: 0.3206 | Val Acc: 0.8815 | Grad Norm: 0.8921
+Epoch 6/20 | LR: 0.035150 | Train Loss: 0.2698 | Train Acc: 0.9001 | Val Loss: 0.3093 | Val Acc: 0.8888 | Grad Norm: 0.9116
+Epoch 7/20 | LR: 0.032675 | Train Loss: 0.2501 | Train Acc: 0.9083 | Val Loss: 0.3089 | Val Acc: 0.8887 | Grad Norm: 0.9361
+Epoch 8/20 | LR: 0.030200 | Train Loss: 0.2331 | Train Acc: 0.9131 | Val Loss: 0.3107 | Val Acc: 0.8865 | Grad Norm: 0.9503
+Epoch 9/20 | LR: 0.027725 | Train Loss: 0.2219 | Train Acc: 0.9174 | Val Loss: 0.2922 | Val Acc: 0.8961 | Grad Norm: 0.9999
+Epoch 10/20 | LR: 0.025250 | Train Loss: 0.2071 | Train Acc: 0.9237 | Val Loss: 0.3053 | Val Acc: 0.8914 | Grad Norm: 1.0194
+Epoch 11/20 | LR: 0.022775 | Train Loss: 0.1932 | Train Acc: 0.9280 | Val Loss: 0.3003 | Val Acc: 0.8927 | Grad Norm: 1.0436
+Epoch 12/20 | LR: 0.020300 | Train Loss: 0.1792 | Train Acc: 0.9331 | Val Loss: 0.2907 | Val Acc: 0.9016 | Grad Norm: 1.0696
+Epoch 13/20 | LR: 0.017825 | Train Loss: 0.1654 | Train Acc: 0.9380 | Val Loss: 0.3026 | Val Acc: 0.8988 | Grad Norm: 1.1358
+Epoch 14/20 | LR: 0.015350 | Train Loss: 0.1528 | Train Acc: 0.9425 | Val Loss: 0.3243 | Val Acc: 0.8953 | Grad Norm: 1.1728
+Epoch 15/20 | LR: 0.012875 | Train Loss: 0.1409 | Train Acc: 0.9471 | Val Loss: 0.3218 | Val Acc: 0.8948 | Grad Norm: 1.2142
+Epoch 16/20 | LR: 0.010400 | Train Loss: 0.1241 | Train Acc: 0.9539 | Val Loss: 0.3304 | Val Acc: 0.8963 | Grad Norm: 1.2112
+Epoch 17/20 | LR: 0.007925 | Train Loss: 0.1093 | Train Acc: 0.9605 | Val Loss: 0.3278 | Val Acc: 0.8995 | Grad Norm: 1.2184
+Early stopping triggered.
+
+Running Experiment 5 — Optimizer: Adam
+Epoch 1/20 | LR: 0.001000 | Train Loss: 0.5713 | Train Acc: 0.8238 | Val Loss: 0.3967 | Val Acc: 0.8578 | Grad Norm: 1.2167
+Epoch 2/20 | LR: 0.001000 | Train Loss: 0.3866 | Train Acc: 0.8619 | Val Loss: 0.3567 | Val Acc: 0.8724 | Grad Norm: 0.9570
+Epoch 3/20 | LR: 0.001000 | Train Loss: 0.3458 | Train Acc: 0.8749 | Val Loss: 0.3339 | Val Acc: 0.8789 | Grad Norm: 0.8833
+Epoch 4/20 | LR: 0.001000 | Train Loss: 0.3205 | Train Acc: 0.8844 | Val Loss: 0.3195 | Val Acc: 0.8845 | Grad Norm: 0.8561
+Epoch 5/20 | LR: 0.001000 | Train Loss: 0.3037 | Train Acc: 0.8883 | Val Loss: 0.3242 | Val Acc: 0.8832 | Grad Norm: 0.8388
+Epoch 6/20 | LR: 0.001000 | Train Loss: 0.2913 | Train Acc: 0.8917 | Val Loss: 0.3384 | Val Acc: 0.8762 | Grad Norm: 0.8166
+Epoch 7/20 | LR: 0.001000 | Train Loss: 0.2751 | Train Acc: 0.8990 | Val Loss: 0.3267 | Val Acc: 0.8820 | Grad Norm: 0.8131
+Epoch 8/20 | LR: 0.001000 | Train Loss: 0.2624 | Train Acc: 0.9039 | Val Loss: 0.3312 | Val Acc: 0.8801 | Grad Norm: 0.8134
+Epoch 9/20 | LR: 0.001000 | Train Loss: 0.2539 | Train Acc: 0.9062 | Val Loss: 0.3145 | Val Acc: 0.8878 | Grad Norm: 0.8239
+Epoch 10/20 | LR: 0.001000 | Train Loss: 0.2452 | Train Acc: 0.9092 | Val Loss: 0.3326 | Val Acc: 0.8835 | Grad Norm: 0.8377
+Epoch 11/20 | LR: 0.001000 | Train Loss: 0.2394 | Train Acc: 0.9124 | Val Loss: 0.3004 | Val Acc: 0.8908 | Grad Norm: 0.8414
+Epoch 12/20 | LR: 0.001000 | Train Loss: 0.2283 | Train Acc: 0.9160 | Val Loss: 0.3281 | Val Acc: 0.8830 | Grad Norm: 0.8434
+Epoch 13/20 | LR: 0.001000 | Train Loss: 0.2187 | Train Acc: 0.9190 | Val Loss: 0.3080 | Val Acc: 0.8899 | Grad Norm: 0.8585
+Epoch 14/20 | LR: 0.001000 | Train Loss: 0.2169 | Train Acc: 0.9190 | Val Loss: 0.3199 | Val Acc: 0.8879 | Grad Norm: 0.8878
+Epoch 15/20 | LR: 0.001000 | Train Loss: 0.2079 | Train Acc: 0.9227 | Val Loss: 0.3164 | Val Acc: 0.8892 | Grad Norm: 0.8933
+Epoch 16/20 | LR: 0.001000 | Train Loss: 0.2033 | Train Acc: 0.9236 | Val Loss: 0.3202 | Val Acc: 0.8845 | Grad Norm: 0.9237
+Early stopping triggered.
+Updated REPORT.md successfully.
+Successfully pushed to GitHub!

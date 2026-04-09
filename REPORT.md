@@ -323,21 +323,68 @@ All four optimizers were applied to the BatchNorm MLP. SGD variants used a start
 ### Learning Curves
 The learning curves illustrate how each model behaves during training.
 
-Baseline MLP vs. MLP + BatchNorm  
-![Baseline MLP Loss](./images/baseline_mlp_loss.png) ![BatchNorm MLP Loss](./images/batchnorm_mlp_loss.png)
+#### Standard Training (LR = 0.001)
 
-MLP + Dropout vs. MLP + BatchNorm + Dropout  
-![Dropout MLP Loss](./images/dropout_mlp_loss.png) ![BatchNorm + Dropout MLP Loss](./images/batchnorm_dropout_mlp_loss.png)
+Baseline MLP — Loss and Accuracy  
+![Baseline MLP Loss](./images/baseline_mlp_loss.png) ![Baseline MLP Accuracy](./images/baseline_mlp_accuracy.png)
 
-Baseline (LR = 0.01) vs. BatchNorm (LR = 0.01)  
-![Baseline High LR Loss](./images/baseline_high_lr_loss.png) ![BatchNorm High LR Loss](./images/batchnorm_high_lr_loss.png)
+MLP + BatchNorm — Loss and Accuracy  
+![BatchNorm MLP Loss](./images/batchnorm_mlp_loss.png) ![BatchNorm MLP Accuracy](./images/batchnorm_mlp_accuracy.png)
 
-(Accuracy curves are also included in the repository under the `images/` directory.)
+MLP + Dropout — Loss and Accuracy  
+![Dropout MLP Loss](./images/dropout_mlp_loss.png) ![Dropout MLP Accuracy](./images/dropout_mlp_accuracy.png)
 
-### Confusion Matrix
-The confusion matrix below shows the class-wise performance of the final model (BatchNorm + Dropout):
+MLP + BatchNorm + Dropout — Loss and Accuracy  
+![BatchNorm + Dropout MLP Loss](./images/batchnorm_dropout_mlp_loss.png) ![BatchNorm + Dropout MLP Accuracy](./images/batchnorm_dropout_mlp_accuracy.png)
 
-![BatchNorm + Dropout MLP Confusion Matrix](./images/batchnorm_dropout_mlp_confusion_matrix.png)
+#### High Learning Rate (LR = 0.01)
+
+Baseline (LR = 0.01) — Loss and Accuracy  
+![Baseline High LR Loss](./images/baseline_high_lr_loss.png) ![Baseline High LR Accuracy](./images/baseline_high_lr_accuracy.png)
+
+BatchNorm (LR = 0.01) — Loss and Accuracy  
+![BatchNorm High LR Loss](./images/batchnorm_high_lr_loss.png) ![BatchNorm High LR Accuracy](./images/batchnorm_high_lr_accuracy.png)
+
+Dropout (LR = 0.01) — Loss and Accuracy  
+![Dropout High LR Loss](./images/dropout_high_lr_loss.png) ![Dropout High LR Accuracy](./images/dropout_high_lr_accuracy.png)
+
+BatchNorm + Dropout (LR = 0.01) — Loss and Accuracy  
+![BatchNorm + Dropout High LR Loss](./images/batchnorm_dropout_high_lr_loss.png) ![BatchNorm + Dropout High LR Accuracy](./images/batchnorm_dropout_high_lr_accuracy.png)
+
+#### Very High Learning Rate (LR = 0.05)
+
+Baseline (LR = 0.05) — Loss and Accuracy  
+![Baseline Very High LR Loss](./images/baseline_very_high_lr_loss.png) ![Baseline Very High LR Accuracy](./images/baseline_very_high_lr_accuracy.png)
+
+BatchNorm (LR = 0.05) — Loss and Accuracy  
+![BatchNorm Very High LR Loss](./images/batchnorm_very_high_lr_loss.png) ![BatchNorm Very High LR Accuracy](./images/batchnorm_very_high_lr_accuracy.png)
+
+Dropout (LR = 0.05) — Loss and Accuracy  
+![Dropout Very High LR Loss](./images/dropout_very_high_lr_loss.png) ![Dropout Very High LR Accuracy](./images/dropout_very_high_lr_accuracy.png)
+
+BatchNorm + Dropout (LR = 0.05) — Loss and Accuracy  
+![BatchNorm + Dropout Very High LR Loss](./images/batchnorm_dropout_very_high_lr_loss.png) ![BatchNorm + Dropout Very High LR Accuracy](./images/batchnorm_dropout_very_high_lr_accuracy.png)
+
+### Confusion Matrices
+The confusion matrices below show the class-wise prediction performance for each model variant.
+
+#### Standard Training (LR = 0.001)
+
+![Baseline MLP Confusion Matrix](./images/baseline_mlp_confusion_matrix.png) ![BatchNorm MLP Confusion Matrix](./images/batchnorm_mlp_confusion_matrix.png)
+
+![Dropout MLP Confusion Matrix](./images/dropout_mlp_confusion_matrix.png) ![BatchNorm + Dropout MLP Confusion Matrix](./images/batchnorm_dropout_mlp_confusion_matrix.png)
+
+#### High Learning Rate (LR = 0.01)
+
+![Baseline High LR Confusion Matrix](./images/baseline_high_lr_confusion_matrix.png) ![BatchNorm High LR Confusion Matrix](./images/batchnorm_high_lr_confusion_matrix.png)
+
+![Dropout High LR Confusion Matrix](./images/dropout_high_lr_confusion_matrix.png) ![BatchNorm + Dropout High LR Confusion Matrix](./images/batchnorm_dropout_high_lr_confusion_matrix.png)
+
+#### Very High Learning Rate (LR = 0.05)
+
+![Baseline Very High LR Confusion Matrix](./images/baseline_very_high_lr_confusion_matrix.png) ![BatchNorm Very High LR Confusion Matrix](./images/batchnorm_very_high_lr_confusion_matrix.png)
+
+![Dropout Very High LR Confusion Matrix](./images/dropout_very_high_lr_confusion_matrix.png) ![BatchNorm + Dropout Very High LR Confusion Matrix](./images/batchnorm_dropout_very_high_lr_confusion_matrix.png)
 
 ### Optimizer Comparison Curves (Experiment 5)
 
